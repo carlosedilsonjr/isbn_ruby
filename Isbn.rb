@@ -27,6 +27,7 @@ class Isbn
                 sum += array[i].to_i * 3
             end}
         result = 10 - sum%10
+        result = 0 if result==10
         numberValidated = @isbnNumber.to_s.concat(result.to_s).to_i
         puts "O número recbido foi #{@isbnNumber} e sua validação ficou como #{numberValidated}"
     end
@@ -41,6 +42,7 @@ class Isbn
                 sum += array[i].to_i * 3
             end}
         result = 10 - sum%10
+        result = 0 if result==10
         valid = result.eql?(@digitValidator)? "Válido" : "Inválido"
         puts "O número recbido #{@completeNumber} é #{valid}"
     end
