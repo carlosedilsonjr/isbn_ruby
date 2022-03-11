@@ -1,18 +1,20 @@
 class Isbn
     def initialize(isbnNumber)
-        if(!isbnNumber)
-            puts 'Expected a number.'
+        if(!(Integer(isbnNumber) rescue false))
+            @result = 'Invalid input, give a number!'
         elsif(isbnNumber.to_s.size>13)
-            puts 'Number have more than 12/13 digits.'
+            @result = 'Number have more than 12/13 digits!'
         elsif(isbnNumber.to_s.size<12)
-            puts "Number have less than 12/13 digits."
+            @result = "Number have less than 12/13 digits!"
         else
             if(isbnNumber.to_s.size==12)
                 @isbnNumber=isbnNumber
+                self.validate
             else
                 @isbnNumber=isbnNumber.to_s.chop.to_i
                 @digitValidator=isbnNumber.to_s[-1].to_i
                 @completeNumber=isbnNumber
+                self.check
             end
         end
     end
@@ -29,7 +31,7 @@ class Isbn
         result = 10 - sum%10
         result = 0 if result==10
         numberValidated = @isbnNumber.to_s.concat(result.to_s).to_i
-        puts "O número recbido foi #{@isbnNumber} e sua validação ficou como #{numberValidated}"
+        @result = numberValidated
     end
 
     def check
@@ -43,7 +45,11 @@ class Isbn
             end}
         result = 10 - sum%10
         result = 0 if result==10
-        valid = result.eql?(@digitValidator)? "Válido" : "Inválido"
-        puts "O número recbido #{@completeNumber} é #{valid}"
+        valid = result.eql?(@digitValidator)
+        @result = valid
+    end
+
+    def result
+        return @result
     end
 end
