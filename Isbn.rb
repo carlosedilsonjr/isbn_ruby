@@ -12,6 +12,7 @@ class Isbn
             else
                 @isbnNumber=isbnNumber.to_s.chop.to_i
                 @digitValidator=isbnNumber.to_s[-1].to_i
+                @completeNumber=isbnNumber
             end
         end
     end
@@ -41,6 +42,6 @@ class Isbn
             end}
         result = 10 - sum%10
         valid = result.eql?(@digitValidator)? "Válido" : "Inválido"
-        puts "O número recbido é #{valid}"
+        puts "O número recbido #{@completeNumber} é #{valid}"
     end
 end
