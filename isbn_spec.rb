@@ -27,10 +27,10 @@ RSpec.describe Isbn do
 	end
 
 	context "when passing a isbn number to validate (12 digits)" do
-		it " as number should return the number validated as number" do
+		it "as number should return the number validated as number" do
 			expect(Isbn.new(978014300723).result).to eq(9780143007234)
 		end
-		it " as string should return the number validated as string" do
+		it "as string should return the number validated as string" do
 			expect(Isbn.new('978014300723').result).to eq('9780143007234')
 		end
 	end
